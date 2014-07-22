@@ -64,9 +64,6 @@ func printUsage() {
 
 	fmt.Println("gotime 1405967017972502579")
 	fmt.Println("-----------------")
-	showTime([]string{"1349034753"})
+	showTime([]string{"1405967017972502579"})
 
-	fmt.Println("gotime ")
-	fmt.Println("-----------------")
-	showTime([]string{"1349034753"})
 }
