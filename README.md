@@ -1,13 +1,13 @@
 gotime
 ======
 
-Give hime a timestamp or nano timestamp he will give you the time in a readable format
+Give it a timestamp or a nano-timestamp it will give you the time in a readable format.
 
 ##Installation
 
-`
-go get github.com/juliendsv/gotime
-`
+
+	go get github.com/juliendsv/gotime
+
 
 ##Usage
 

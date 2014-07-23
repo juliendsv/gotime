@@ -22,7 +22,8 @@ func main() {
 }
 
 func printTime(date time.Time) {
-	fmt.Println("Now: \t\t\t", date)
+	date = date.In(time.Local)
+	fmt.Println("Date: \t\t\t", date)
 	fmt.Println("timestamp: \t\t", date.Unix())
 	fmt.Println("Nano timestamp: \t", date.UnixNano())
 }
@@ -30,6 +31,13 @@ func printTime(date time.Time) {
 func showTime(args []string) {
 	timestamp, _ := strconv.Atoi(args[0])
 	if timestamp == 0 {
+		t, err := time.Parse("2006-01-02 15:04:05", args[0])
+		if err != nil {
+			fmt.Printf("Error: unknown format \"%s\" \n", args[0])
+			printUsage()
+			return
+		}
+		printTime(t)
 		return
 	}
 	date := guessTimestamp(int64(timestamp))
@@ -65,5 +73,10 @@ func printUsage() {
 	fmt.Println("gotime 1405967017972502579")
 	fmt.Println("-----------------")
 	showTime([]string{"1405967017972502579"})
+	fmt.Println("\n")
 
+	fmt.Println("gotime \"2014-02-03 19:54:02\"")
+	fmt.Println("-----------------")
+	showTime([]string{"2014-02-03 19:54:02"})
+	fmt.Println("\n")
 }
