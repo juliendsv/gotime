@@ -14,20 +14,27 @@ Give it a timestamp or a nano-timestamp it will give you the time in a readable 
 
 	$ gotime
 	-----------------
-	Now: 			 2014-07-22 18:46:30.82667704 +0100 BST
-	timestamp: 		 1406051190
-	Nano timestamp: 	 1406051190826677040
+	Date: 			 2014-07-23 18:36:08.319846333 +0100 BST
+	timestamp: 		 1406136968
+	Nano timestamp: 	 1406136968319846333
 
 
 	$ gotime 1349034753
 	-----------------
-	Now: 			 2012-09-30 20:52:33 +0100 BST
+	Date: 			 2012-09-30 20:52:33 +0100 BST
 	timestamp: 		 1349034753
 	Nano timestamp: 	 1349034753000000000
 
 
 	$ gotime 1405967017972502579
 	-----------------
-	Now: 			 2014-07-21 19:23:37.972502579 +0100 BST
+	Date: 			 2014-07-21 19:23:37.972502579 +0100 BST
 	timestamp: 		 1405967017
 	Nano timestamp: 	 1405967017972502579
+
+
+	$ gotime "2014-02-03 19:54:02"
+	-----------------
+	Date: 			 2014-02-03 19:54:02 +0000 GMT
+	timestamp: 		 1391457242
+	Nano timestamp: 	 1391457242000000000
