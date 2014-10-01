@@ -23,7 +23,8 @@ func main() {
 
 func printTime(date time.Time) {
 	date = date.In(time.Local)
-	fmt.Println("Date: \t\t\t", date)
+	fmt.Println("UTC: \t\t\t", date.UTC())
+	fmt.Println("Local: \t\t\t", date)
 	fmt.Println("timestamp: \t\t", date.Unix())
 	fmt.Println("Nano timestamp: \t", date.UnixNano())
 }
