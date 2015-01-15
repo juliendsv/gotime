@@ -16,6 +16,10 @@ func main() {
 		printTime(time.Now())
 	} else if args[0] == "help" {
 		printUsage()
+	} else if args[0] == "yesterday" {
+		printTime(time.Now().AddDate(0, 0, -1))
+	} else if args[0] == "tomorrow" {
+		printTime(time.Now().AddDate(0, 0, 1))
 	} else {
 		showTime(args)
 	}
