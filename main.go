@@ -17,12 +17,20 @@ func main() {
 	} else if args[0] == "help" {
 		printUsage()
 	} else if args[0] == "yesterday" {
-		printTime(time.Now().AddDate(0, 0, -1))
+		yesterday()
 	} else if args[0] == "tomorrow" {
-		printTime(time.Now().AddDate(0, 0, 1))
+		tomorrow()
 	} else {
 		showTime(args)
 	}
+}
+
+func yesterday() {
+	printTime(time.Now().AddDate(0, 0, -1))
+}
+
+func tomorrow() {
+	printTime(time.Now().AddDate(0, 0, 1))
 }
 
 func printTime(date time.Time) {
@@ -73,6 +81,16 @@ func printUsage() {
 	fmt.Println("gotime 1349034753")
 	fmt.Println("-----------------")
 	showTime([]string{"1349034753"})
+	fmt.Println("\n")
+
+	fmt.Println("gotime yesterday")
+	fmt.Println("-----------------")
+	yesterday()
+	fmt.Println("\n")
+
+	fmt.Println("gotime tomorrow")
+	fmt.Println("-----------------")
+	tomorrow()
 	fmt.Println("\n")
 
 	fmt.Println("gotime 1405967017972502579")
