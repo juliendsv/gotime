@@ -40,18 +40,16 @@ Give it a timestamp or a nano-timestamp it will give you the time in a readable 
 	timestamp: 		 1391457242
 	Nano timestamp: 	 1391457242000000000
 
-	gotime yesterday
+	$ gotime yesterday
 	-----------------
 	UTC: 			 2015-01-16 14:35:34.936662557 +0000 UTC
 	Local: 			 2015-01-16 14:35:34.936662557 +0000 GMT
 	timestamp: 		 1421418934
 	Nano timestamp: 	 1421418934936662557
 
-
-	gotime tomorrow
+	$ gotime tomorrow
 	-----------------
 	UTC: 			 2015-01-18 14:35:34.936748828 +0000 UTC
 	Local: 			 2015-01-18 14:35:34.936748828 +0000 GMT
 	timestamp: 		 1421591734
 	Nano timestamp: 	 1421591734936748828
-	
