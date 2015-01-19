@@ -5,32 +5,54 @@ import (
 	"fmt"
 	"math"
 	"strconv"
+	"strings"
 	"time"
 )
 
 func main() {
+
+	z := flag.Bool("z", false, "time to zero")
+
 	flag.Parse()
 	args := flag.Args()
 
 	if len(args) < 1 {
-		printTime(time.Now())
+		result := time.Now()
+		if *z == true {
+			result = time.Date(result.Year(), result.Month(), result.Day(), 0, 0, 0, 0, time.Local)
+		}
+		printTime(result)
 	} else if args[0] == "help" {
 		printUsage()
 	} else if args[0] == "yesterday" {
-		yesterday()
+		yesterday(*z)
 	} else if args[0] == "tomorrow" {
-		tomorrow()
+		tomorrow(*z)
+	} else if strings.HasSuffix(args[0], "daysago") {
+		nb, err := strconv.Atoi(strings.Replace(args[0], "daysago", "", 1))
+		if err != nil {
+			printUsage()
+		}
+		countDays((nb * -1), *z)
 	} else {
 		showTime(args)
 	}
 }
 
-func yesterday() {
-	printTime(time.Now().AddDate(0, 0, -1))
+func yesterday(z bool) {
+	countDays(-1, z)
+}
+func tomorrow(z bool) {
+	countDays(1, z)
 }
 
-func tomorrow() {
-	printTime(time.Now().AddDate(0, 0, 1))
+func countDays(nb int, z bool) {
+	result := time.Now().AddDate(0, 0, nb)
+	if z == true {
+		result = time.Date(result.Year(), result.Month(), result.Day(), 0, 0, 0, 0, time.Local)
+	}
+
+	printTime(result)
 }
 
 func printTime(date time.Time) {
@@ -38,6 +60,7 @@ func printTime(date time.Time) {
 	fmt.Println("UTC: \t\t\t", date.UTC())
 	fmt.Println("Local: \t\t\t", date)
 	fmt.Println("timestamp: \t\t", date.Unix())
+	fmt.Println("Milli timestamp: \t", date.Unix()*1000)
 	fmt.Println("Nano timestamp: \t", date.UnixNano())
 }
 
@@ -85,12 +108,22 @@ func printUsage() {
 
 	fmt.Println("gotime yesterday")
 	fmt.Println("-----------------")
-	yesterday()
+	yesterday(false)
+	fmt.Println("\n")
+
+	fmt.Println("gotime -z yesterday")
+	fmt.Println("-----------------")
+	yesterday(true)
 	fmt.Println("\n")
 
 	fmt.Println("gotime tomorrow")
 	fmt.Println("-----------------")
-	tomorrow()
+	tomorrow(false)
+	fmt.Println("\n")
+
+	fmt.Println("gotime 5daysago")
+	fmt.Println("-----------------")
+	countDays(-5, false)
 	fmt.Println("\n")
 
 	fmt.Println("gotime 1405967017972502579")
