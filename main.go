@@ -9,6 +9,11 @@ import (
 	"time"
 )
 
+const (
+	past    = "daysago"
+	forward = "daysfwd"
+)
+
 func main() {
 
 	z := flag.Bool("z", false, "time to zero")
@@ -28,12 +33,18 @@ func main() {
 		yesterday(*z)
 	} else if args[0] == "tomorrow" {
 		tomorrow(*z)
-	} else if strings.HasSuffix(args[0], "daysago") {
-		nb, err := strconv.Atoi(strings.Replace(args[0], "daysago", "", 1))
+	} else if strings.HasSuffix(args[0], past) {
+		nb, err := strconv.Atoi(strings.Replace(args[0], past, "", 1))
 		if err != nil {
 			printUsage()
 		}
 		countDays((nb * -1), *z)
+	} else if strings.HasSuffix(args[0], forward) {
+		nb, err := strconv.Atoi(strings.Replace(args[0], forward, "", 1))
+		if err != nil {
+			printUsage()
+		}
+		countDays(nb, *z)
 	} else {
 		showTime(args)
 	}
@@ -124,6 +135,11 @@ func printUsage() {
 	fmt.Println("gotime 5daysago")
 	fmt.Println("-----------------")
 	countDays(-5, false)
+	fmt.Println("\n")
+
+	fmt.Println("gotime 5dayfwd")
+	fmt.Println("-----------------")
+	countDays(5, false)
 	fmt.Println("\n")
 
 	fmt.Println("gotime 1405967017972502579")
