@@ -14,11 +14,11 @@ Give it a timestamp or a nano-timestamp it will give you the time in a readable 
 
 	$ gotime
 	-----------------
-	UTC: 			 	 	2015-01-20 17:20:13.349027819 +0000 UTC
-	Local: 			 	 	2015-01-20 17:20:13.349027819 +0000 GMT
-	timestamp: 		 	 	1421774413
-	Milli timestamp: 	 	1421774413000
-	Nano timestamp: 	 	1421774413349027819
+	UTC: 			 	 2015-01-24 23:50:00.768050008 +0000 UTC
+	Local: 			 	 2015-01-24 23:50:00.768050008 +0000 GMT
+	timestamp: 		 	 1422143400
+	Milli timestamp: 	 1422143400000
+	Nano timestamp: 	 1422143400768050008
 
 	$ gotime 1349034753
 	-----------------
@@ -30,35 +30,43 @@ Give it a timestamp or a nano-timestamp it will give you the time in a readable 
 
 	$ gotime yesterday
 	-----------------
-	UTC: 			 		2015-01-19 17:20:13.349240058 +0000 UTC
-	Local: 			 		2015-01-19 17:20:13.349240058 +0000 GMT
-	timestamp: 		 		1421688013
-	Milli timestamp: 	 	1421688013000
-	Nano timestamp: 	 	1421688013349240058
+	UTC: 			 	 2015-01-23 23:50:00.768304081 +0000 UTC
+	Local: 			 	 2015-01-23 23:50:00.768304081 +0000 GMT
+	timestamp: 		 	 1422057000
+	Milli timestamp: 	 1422057000000
+	Nano timestamp: 	 1422057000768304081
 
 	$ gotime -z yesterday
 	-----------------
-	UTC: 			 		2015-01-19 00:00:00 +0000 UTC
-	Local: 			 		2015-01-19 00:00:00 +0000 GMT
-	timestamp: 		 		1421625600
-	Milli timestamp: 	 	1421625600000
-	Nano timestamp: 	 	1421625600000000000
+	UTC: 			 	 2015-01-23 00:00:00 +0000 UTC
+	Local: 			 	 2015-01-23 00:00:00 +0000 GMT
+	timestamp: 		 	 1421971200
+	Milli timestamp: 	 1421971200000
+	Nano timestamp: 	 1421971200000000000
 
 	$ gotime tomorrow
 	-----------------
-	UTC: 			 		2015-01-21 17:20:13.349284741 +0000 UTC
-	Local: 			 		2015-01-21 17:20:13.349284741 +0000 GMT
-	timestamp: 		 		1421860813
-	Milli timestamp: 	 	1421860813000
-	Nano timestamp: 	 	1421860813349284741
+	UTC: 			     2015-01-25 23:50:00.768348762 +0000 UTC
+	Local: 			 	 2015-01-25 23:50:00.768348762 +0000 GMT
+	timestamp: 		 	 1422229800
+	Milli timestamp: 	 1422229800000
+	Nano timestamp: 	 1422229800768348762
 
 	$ gotime 5daysago
 	-----------------
-	UTC: 			 		2015-01-15 17:20:13.349464529 +0000 UTC
-	Local: 			 		2015-01-15 17:20:13.349464529 +0000 GMT
-	timestamp: 		 		1421342413
-	Milli timestamp: 	 	1421342413000
-	Nano timestamp: 	 	1421342413349464529
+	UTC: 			 	 2015-01-19 23:50:00.768468249 +0000 UTC
+	Local: 			 	 2015-01-19 23:50:00.768468249 +0000 GMT
+	timestamp: 		 	 1421711400
+	Milli timestamp: 	 1421711400000
+	Nano timestamp: 	 1421711400768468249
+
+	$ gotime 2daysfwd
+	-----------------
+	UTC: 				 2015-01-29 23:50:00.768497912 +0000 UTC
+	Local: 				 2015-01-29 23:50:00.768497912 +0000 GMT
+	timestamp: 			 1422575400
+	Milli timestamp: 	 1422575400000
+	Nano timestamp: 	 1422575400768497912
 
 	$ gotime 1405967017972502579
 	-----------------
