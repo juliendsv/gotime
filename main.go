@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"math"
+	"os"
 	"strconv"
 	"strings"
 	"time"
@@ -16,8 +17,8 @@ const (
 
 func main() {
 
+	flag.Usage = usage
 	z := flag.Bool("z", false, "time to zero")
-
 	flag.Parse()
 	args := flag.Args()
 
@@ -27,8 +28,6 @@ func main() {
 			result = time.Date(result.Year(), result.Month(), result.Day(), 0, 0, 0, 0, time.Local)
 		}
 		printTime(result)
-	} else if args[0] == "help" {
-		printUsage()
 	} else if args[0] == "yesterday" {
 		yesterday(*z)
 	} else if args[0] == "tomorrow" {
@@ -36,13 +35,13 @@ func main() {
 	} else if strings.HasSuffix(args[0], past) {
 		nb, err := strconv.Atoi(strings.Replace(args[0], past, "", 1))
 		if err != nil {
-			printUsage()
+			usage()
 		}
 		countDays((nb * -1), *z)
 	} else if strings.HasSuffix(args[0], forward) {
 		nb, err := strconv.Atoi(strings.Replace(args[0], forward, "", 1))
 		if err != nil {
-			printUsage()
+			usage()
 		}
 		countDays(nb, *z)
 	} else {
@@ -81,7 +80,7 @@ func showTime(args []string) {
 		t, err := time.Parse("2006-01-02 15:04:05", args[0])
 		if err != nil {
 			fmt.Printf("Error: unknown format \"%s\" \n", args[0])
-			printUsage()
+			usage()
 			return
 		}
 		printTime(t)
@@ -104,51 +103,77 @@ func guessTimestamp(ts int64) time.Time {
 	}
 }
 
-func printUsage() {
-	fmt.Println("Usage:\n")
+var usageinfo string = `gotime is a timestamp tool for humans.
 
-	fmt.Println("gotime")
-	fmt.Println("-----------------")
-	printTime(time.Now())
-	fmt.Println("\n")
+Usage:
 
-	fmt.Println("gotime 1349034753")
-	fmt.Println("-----------------")
-	showTime([]string{"1349034753"})
-	fmt.Println("\n")
+	gotime [flags] [TIMESTAMP|EXPR]
 
-	fmt.Println("gotime yesterday")
-	fmt.Println("-----------------")
-	yesterday(false)
-	fmt.Println("\n")
+flags:
+	-z			Make the timestamp at 0 hour, 0 minute, 0 second of that day
 
-	fmt.Println("gotime -z yesterday")
-	fmt.Println("-----------------")
-	yesterday(true)
-	fmt.Println("\n")
+TIMESTAMP:
+	Timestamp can be in seconds, millioseconds, microseconds or nanoseconds
 
-	fmt.Println("gotime tomorrow")
-	fmt.Println("-----------------")
-	tomorrow(false)
-	fmt.Println("\n")
+EXPR:
+	Expressions can be shortcut words:
+		tomorrow		timestamp 1 day in the future
+		yesterday		timestamp 1 day in the past
+		2daysago		timestamp 2 days in the past
+		5daysfwd		timestamp 5 days in the future
 
-	fmt.Println("gotime 5daysago")
-	fmt.Println("-----------------")
-	countDays(-5, false)
-	fmt.Println("\n")
+`
 
-	fmt.Println("gotime 5dayfwd")
-	fmt.Println("-----------------")
-	countDays(5, false)
-	fmt.Println("\n")
-
-	fmt.Println("gotime 1405967017972502579")
-	fmt.Println("-----------------")
-	showTime([]string{"1405967017972502579"})
-	fmt.Println("\n")
-
-	fmt.Println("gotime \"2014-02-03 19:54:02\"")
-	fmt.Println("-----------------")
-	showTime([]string{"2014-02-03 19:54:02"})
-	fmt.Println("\n")
+func usage() {
+	fmt.Println(usageinfo)
+	os.Exit(2)
 }
+
+// func printUsage() {
+// 	fmt.Println("Usage:\n")
+
+// 	fmt.Println("gotime")
+// 	fmt.Println("-----------------")
+// 	printTime(time.Now())
+// 	fmt.Println("\n")
+
+// 	fmt.Println("gotime 1349034753")
+// 	fmt.Println("-----------------")
+// 	showTime([]string{"1349034753"})
+// 	fmt.Println("\n")
+
+// 	fmt.Println("gotime yesterday")
+// 	fmt.Println("-----------------")
+// 	yesterday(false)
+// 	fmt.Println("\n")
+
+// 	fmt.Println("gotime -z yesterday")
+// 	fmt.Println("-----------------")
+// 	yesterday(true)
+// 	fmt.Println("\n")
+
+// 	fmt.Println("gotime tomorrow")
+// 	fmt.Println("-----------------")
+// 	tomorrow(false)
+// 	fmt.Println("\n")
+
+// 	fmt.Println("gotime 5daysago")
+// 	fmt.Println("-----------------")
+// 	countDays(-5, false)
+// 	fmt.Println("\n")
+
+// 	fmt.Println("gotime 5dayfwd")
+// 	fmt.Println("-----------------")
+// 	countDays(5, false)
+// 	fmt.Println("\n")
+
+// 	fmt.Println("gotime 1405967017972502579")
+// 	fmt.Println("-----------------")
+// 	showTime([]string{"1405967017972502579"})
+// 	fmt.Println("\n")
+
+// 	fmt.Println("gotime \"2014-02-03 19:54:02\"")
+// 	fmt.Println("-----------------")
+// 	showTime([]string{"2014-02-03 19:54:02"})
+// 	fmt.Println("\n")
+// }
