@@ -92,9 +92,9 @@ Synopsis
 
 
 	$ gotime "2014-02-03 19:54:02"
-	Local: 			 		2014-02-03 19:54:02 +0000 GMT
-	UTC: 			 		2014-02-03 19:54:02 +0000 UTC
-	timestamp: 		 		1391457242
-	Milli timestamp: 	 	1391457242000
-	Nano timestamp: 	 	1391457242000000000
+	Local: 			 			2014-02-03 19:54:02 +0000 GMT
+	UTC: 			 			2014-02-03 19:54:02 +0000 UTC
+	timestamp: 		 			1391457242
+	Milli timestamp: 	 		1391457242000
+	Nano timestamp: 	 		1391457242000000000
 
