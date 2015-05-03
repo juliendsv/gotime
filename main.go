@@ -16,7 +16,6 @@ const (
 )
 
 func main() {
-
 	flag.Usage = usage
 	z := flag.Bool("z", false, "time to zero")
 	flag.Parse()
@@ -67,8 +66,8 @@ func countDays(nb int, z bool) {
 
 func printTime(date time.Time) {
 	date = date.In(time.Local)
-	fmt.Println("UTC: \t\t\t", date.UTC())
 	fmt.Println("Local: \t\t\t", date)
+	fmt.Println("UTC: \t\t\t", date.UTC())
 	fmt.Println("timestamp: \t\t", date.Unix())
 	fmt.Println("Milli timestamp: \t", date.Unix()*1000)
 	fmt.Println("Nano timestamp: \t", date.UnixNano())
@@ -128,52 +127,3 @@ func usage() {
 	fmt.Println(usageinfo)
 	os.Exit(2)
 }
-
-// func printUsage() {
-// 	fmt.Println("Usage:\n")
-
-// 	fmt.Println("gotime")
-// 	fmt.Println("-----------------")
-// 	printTime(time.Now())
-// 	fmt.Println("\n")
-
-// 	fmt.Println("gotime 1349034753")
-// 	fmt.Println("-----------------")
-// 	showTime([]string{"1349034753"})
-// 	fmt.Println("\n")
-
-// 	fmt.Println("gotime yesterday")
-// 	fmt.Println("-----------------")
-// 	yesterday(false)
-// 	fmt.Println("\n")
-
-// 	fmt.Println("gotime -z yesterday")
-// 	fmt.Println("-----------------")
-// 	yesterday(true)
-// 	fmt.Println("\n")
-
-// 	fmt.Println("gotime tomorrow")
-// 	fmt.Println("-----------------")
-// 	tomorrow(false)
-// 	fmt.Println("\n")
-
-// 	fmt.Println("gotime 5daysago")
-// 	fmt.Println("-----------------")
-// 	countDays(-5, false)
-// 	fmt.Println("\n")
-
-// 	fmt.Println("gotime 5dayfwd")
-// 	fmt.Println("-----------------")
-// 	countDays(5, false)
-// 	fmt.Println("\n")
-
-// 	fmt.Println("gotime 1405967017972502579")
-// 	fmt.Println("-----------------")
-// 	showTime([]string{"1405967017972502579"})
-// 	fmt.Println("\n")
-
-// 	fmt.Println("gotime \"2014-02-03 19:54:02\"")
-// 	fmt.Println("-----------------")
-// 	showTime([]string{"2014-02-03 19:54:02"})
-// 	fmt.Println("\n")
-// }
