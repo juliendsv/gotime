@@ -10,9 +10,9 @@ import (
 	"time"
 )
 
-const (
-	past    = "daysago"
-	forward = "daysfwd"
+var (
+	past    = []string{"daysago", "dayago"}
+	forward = []string{"daysfwd", "dayfwd"}
 )
 
 func main() {
@@ -31,14 +31,14 @@ func main() {
 		yesterday(*z)
 	} else if args[0] == "tomorrow" {
 		tomorrow(*z)
-	} else if strings.HasSuffix(args[0], past) {
-		nb, err := strconv.Atoi(strings.Replace(args[0], past, "", 1))
+	} else if found, isit := stringHasSuffix(args[0], past); isit == true {
+		nb, err := strconv.Atoi(strings.Replace(args[0], found, "", 1))
 		if err != nil {
 			usage()
 		}
 		countDays((nb * -1), *z)
-	} else if strings.HasSuffix(args[0], forward) {
-		nb, err := strconv.Atoi(strings.Replace(args[0], forward, "", 1))
+	} else if found, isit := stringHasSuffix(args[0], forward); isit == true {
+		nb, err := strconv.Atoi(strings.Replace(args[0], found, "", 1))
 		if err != nil {
 			usage()
 		}
@@ -46,6 +46,15 @@ func main() {
 	} else {
 		showTime(args)
 	}
+}
+
+func stringHasSuffix(needle string, stack []string) (string, bool) {
+	for _, v := range stack {
+		if strings.HasSuffix(needle, v) {
+			return v, true
+		}
+	}
+	return "", false
 }
 
 func yesterday(z bool) {
