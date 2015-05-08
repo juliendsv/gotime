@@ -8,6 +8,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	// "github.com/jinzhu/now"
 )
 
 var (
@@ -85,17 +87,30 @@ func printTime(date time.Time) {
 func showTime(args []string) {
 	timestamp, _ := strconv.Atoi(args[0])
 	if timestamp == 0 {
-		t, err := time.Parse("2006-01-02 15:04:05", args[0])
-		if err != nil {
-			fmt.Printf("Error: unknown format \"%s\" \n", args[0])
-			usage()
-			return
-		}
-		printTime(t)
+		guessTimeFormat(args[0])
 		return
 	}
 	date := guessTimestamp(int64(timestamp))
 	printTime(date)
+}
+
+func guessTimeFormat(arg string) {
+	var format string
+	if strings.Contains(arg, " ") {
+		format = "2006-01-02 15:04:05"
+	} else {
+		format = "2006-01-02"
+	}
+
+	t, err := time.Parse(format, arg)
+	if err != nil {
+		fmt.Printf("Error: unknown format \"%s\" \n", arg)
+		usage()
+		return
+	}
+
+	printTime(t)
+	return
 }
 
 func guessTimestamp(ts int64) time.Time {
@@ -118,7 +133,7 @@ Usage:
 	gotime [flags] [TIMESTAMP|EXPR]
 
 flags:
-	-z			Make the timestamp at 0 hour, 0 minute, 0 second of that day
+	-z	Make the timestamp at 0 hour, 0 minute, 0 second of that day
 
 TIMESTAMP:
 	Timestamp can be in seconds, millioseconds, microseconds or nanoseconds
@@ -129,6 +144,7 @@ EXPR:
 		yesterday		timestamp 1 day in the past
 		2daysago		timestamp 2 days in the past
 		5daysfwd		timestamp 5 days in the future
+		2014-12-24		timestamp representation of the date
 
 `
 
