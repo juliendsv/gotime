@@ -98,3 +98,12 @@ Synopsis
 	Milli timestamp: 	 		1391457242000
 	Nano timestamp: 	 		1391457242000000000
 
+
+	$ gotime 2014-02-03
+	Local: 			 			2014-02-03 00:00:00 +0000 GMT
+	UTC: 			 			2014-02-03 00:00:00 +0000 UTC
+	timestamp: 		 			1391385600
+	Milli timestamp: 	 		1391385600000
+	Nano timestamp: 	 		1391385600000000000
+	
+
